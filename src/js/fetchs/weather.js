@@ -1,43 +1,32 @@
 /* eslint-disable */
 import "../../scss/test.scss";
+import { convertToCelsius, handleCreateElement } from "../lib/lib";
 
 const content = document.querySelector(".content");
-
-// Kelvin -> Celsius 온도 변환기
-const convertToCelsius = (kelvin) => {
-  return (kelvin - 273.15).toFixed(2);
-};
-
-// 요청 받은 json을 element에 넣는 함수
-const handleCreateElement = (tag, text, temperature) => {
-  const container = document.createElement("div");
-  const createdTag = document.createElement(tag);
-
-  createdTag.textContent = `현재 날씨는 ${temperature}°C 입니다.`;
-
-  container.appendChild(createdTag);
-  return container;
-};
 
 // request 요청
 const handleAjaxRequest = (latitude, longitude) => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`;
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", URL, true);
-  xhr.responseType = "json";
-  xhr.send();
+  try {
+    xhr.open("GET", URL, true); // 설정하고
+    xhr.responseType = "json";
+    xhr.send(); // 보낸다
 
-  xhr.onload = () => {
-    // 왜 이건 가능하지..?
-    const responseOk = xhr.response;
-    content.appendChild(
-      handleCreateElement(
-        "p",
-        responseOk,
-        convertToCelsius(responseOk.main.temp)
-      )
-    );
-  };
+    xhr.onload = () => {
+      // 왜 이건 가능하지..?
+      const responseOk = xhr.response;
+      // console.log(responseOk);
+      return content.appendChild(
+        handleCreateElement("p", convertToCelsius(responseOk.main.temp))
+      );
+    };
+    xhr.statusText = "OK";
+  } catch (error) {
+    xhr.onerror = () => {
+      throw Error(`Ajax 요청 불가! ${error}`);
+    };
+  }
 };
 
 // 위치값을 가져와 출력

@@ -27,6 +27,8 @@ module.exports = {
     ],
     ajax: `${JSPATH}/fetchs/weather.js`,
     fetch: `${JSPATH}/fetchs/fetch.js`,
+    promise: `${JSPATH}/fetchs/promise.js`,
+    lib: `${JSPATH}/lib/lib.js`,
   },
   output: {
     filename: "[name].[chunkhash].bundle.js",
