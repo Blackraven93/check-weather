@@ -1,3 +1,4 @@
+/* eslint-disable */
 // Kelvin -> Celsius 온도 변환기
 export const convertToCelsius = (kelvin) => {
   return (kelvin - 273.15).toFixed(2);

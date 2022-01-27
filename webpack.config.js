@@ -28,6 +28,7 @@ module.exports = {
     ajax: `${JSPATH}/fetchs/weather.js`,
     fetch: `${JSPATH}/fetchs/fetch.js`,
     promise: `${JSPATH}/fetchs/promise.js`,
+    async: `${JSPATH}/fetchs/async.js`,
     lib: `${JSPATH}/lib/lib.js`,
   },
   output: {
