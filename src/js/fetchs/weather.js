@@ -1,3 +1,4 @@
+/* eslint-disable */
 import "../../scss/test.scss";
 
 const content = document.querySelector(".content");
@@ -11,9 +12,8 @@ const convertToCelsius = (kelvin) => {
 const handleCreateElement = (tag, text, temperature) => {
   const container = document.createElement("div");
   const createdTag = document.createElement(tag);
-  
-  createdTag.innerText = `${temperature}°C`;
-  
+
+  createdTag.textContent = `현재 날씨는 ${temperature}°C 입니다.`;
 
   container.appendChild(createdTag);
   return container;
@@ -22,7 +22,6 @@ const handleCreateElement = (tag, text, temperature) => {
 // request 요청
 const handleAjaxRequest = (latitude, longitude) => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${process.env.WEATHER_API_KEY}`;
-
   const xhr = new XMLHttpRequest();
   xhr.open("GET", URL, true);
   xhr.responseType = "json";
