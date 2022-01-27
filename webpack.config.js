@@ -30,6 +30,7 @@ module.exports = {
     promise: `${JSPATH}/fetchs/promise.js`,
     async: `${JSPATH}/fetchs/async.js`,
     lib: `${JSPATH}/lib/lib.js`,
+    axios: `${JSPATH}/fetchs/axios.js`,
   },
   output: {
     filename: "[name].[chunkhash].bundle.js",
